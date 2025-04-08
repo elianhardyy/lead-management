@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('kota');
             $table->unsignedBigInteger('id_user');
             $table->timestamps();
-            
+            $table->softDeletes();
             $table->foreign('id_sales')->references('id_sales')->on('sales');
             $table->foreign('id_produk')->references('id_produk')->on('produk');
         });
@@ -33,5 +33,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('leads');
+        Schema::table('leads',function(Blueprint $table){
+            $table->dropSoftDeletes();
+        });
     }
 };
