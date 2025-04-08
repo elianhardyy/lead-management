@@ -73,6 +73,18 @@ class LeadController extends Controller
             ->with('success', 'Lead berhasil disimpan!');
     }
 
+    public function show(Lead $lead)
+    {
+        return view('leads.show', compact('lead'));
+    }
+
+    public function edit(Lead $lead)
+    {
+        $sales = Sales::all();
+        $produk = Produk::all();
+        return view('leads.edit', compact('lead', 'sales', 'produk'));
+    }
+
     public function update(Request $request, Lead $lead)
     {
         $request->validate([
@@ -102,5 +114,13 @@ class LeadController extends Controller
         
         return redirect()->route('leads.index')
             ->with('success', 'Lead berhasil diperbarui!');
+    }
+
+    public function destroy(Lead $lead)
+    {
+        $lead->delete();
+        
+        return redirect()->route('leads.index')
+            ->with('success', 'Lead berhasil dihapus!');
     }
 }

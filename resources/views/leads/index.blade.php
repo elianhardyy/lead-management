@@ -106,7 +106,7 @@
                                 <td>{{ $lead->no_wa }}</td>
                                 <td>{{ $lead->kota }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ route('leads.show', $lead->id_leads) }}" class="btn btn-sm btn-primary">Detail</a>
                                 </td>
                             </tr>
                         @empty
